@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
 
-// eslint-disable-next-line
-class SignupScreen extends Component {
-  render() {
-    return (
-      <View>
-        <Text>Signup</Text>
-        <TextInput placeholder="Enter email address"/>
-        <TextInput placeholder="Enter password"/>
-        <TextInput placeholder="Repeat password"/>
-      </View>);
+const signupScreen = () => {
+  const onSignupHandler = () => {
+    alert('Signup');
   }
+
+  return (
+    <View>
+      <Text>Signup</Text>
+      <TextInput placeholder="Enter email address"/>
+      <TextInput placeholder="Enter password"/>
+      <TextInput placeholder="Repeat password"/>
+      <Button title="Sign up" onPress={onSignupHandler} />
+    </View>
+  )
 }
 
-export default SignupScreen;
+export default signupScreen;
