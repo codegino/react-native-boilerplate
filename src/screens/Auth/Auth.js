@@ -28,8 +28,8 @@ class AuthScreen extends Component {
     }
     return (
       <View>
-        {layout}
         <Button title={this.state.buttonTitle} onPress={this.onSwitchModeHandler}/>
+        {layout}
       </View>);
   }
 }

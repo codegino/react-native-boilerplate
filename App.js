@@ -1,9 +1,20 @@
 import { Navigation } from 'react-native-navigation';
 
+import { Provider } from 'react-redux'
+import React from 'react'
 import AuthScreen from './src/screens/Auth/Auth';
+import configureStore from './src/store/configureStore'
+
+const store = configureStore();
+
+const RNRedux = () => (
+  <Provider store={store}>
+    <AuthScreen/>
+  </Provider>
+);
 
 // Register Screens
-Navigation.registerComponent('awesome-places.AuthScreen', () => AuthScreen);
+Navigation.registerComponent('awesome-places.AuthScreen', () => RNRedux);
 
 // Start App
 Navigation.startSingleScreenApp({
