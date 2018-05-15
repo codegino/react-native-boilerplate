@@ -7,14 +7,8 @@ import configureStore from './src/store/configureStore'
 
 const store = configureStore();
 
-const RNRedux = () => (
-  <Provider store={store}>
-    <AuthScreen/>
-  </Provider>
-);
-
 // Register Screens
-Navigation.registerComponent('awesome-places.AuthScreen', () => RNRedux);
+Navigation.registerComponent('awesome-places.AuthScreen', () => AuthScreen, store, Provider);
 
 // Start App
 Navigation.startSingleScreenApp({
