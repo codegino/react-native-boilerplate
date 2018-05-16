@@ -1,7 +1,7 @@
 import {AUTH_SIGNUP} from '../actions/actionTypes'
 
 const initialState = {
-  authData: 'gihooh'
+  authData: ''
 }
 
 const reducer = (state = initialState, action) => {

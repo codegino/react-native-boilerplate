@@ -3,19 +3,34 @@ import { View, Text, TextInput, Button } from 'react-native';
 import {connect} from 'react-redux';
 import {authSignup} from '../../../src/store/actions/index'
 
-const loginScreen = props => {
-  const onLoginHandler = () => {
-    props.onLogin('Yow Yow');
+class LoginScreen extends React.Component {
+  state = {
+    username: ''
   }
 
-  return (
-    <View>
-      <Text>Login {props.authData}</Text>
-      <TextInput placeholder='Username'/>
-      <TextInput placeholder='Password'/>
-      <Button title="Login" onPress={onLoginHandler} />
-    </View>
-  )
+  onLoginHandler = () => {
+    this.props.onLogin(this.state.username);
+  }
+
+  onChangeTextHandler = event => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        username: event
+      }
+    })
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>Login {this.props.authData}</Text>
+        <TextInput placeholder='Username' value={this.state.username} onChangeText={this.onChangeTextHandler}/>
+        <TextInput placeholder='Password'/>
+        <Button title="Login" onPress={this.onLoginHandler} />
+      </View>
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -30,4 +45,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

@@ -1,13 +1,17 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { watchAuth } from './sagas/index';
+import createSagaMiddleware from 'redux-saga'
 
 import authReducer from './reducers/auth'
+
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   auth: authReducer
 });
 
-const configureStore = () => {
-  return createStore(rootReducer)
-}
+const configureStore = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-export default configureStore;
+export default () => configureStore;
+
+sagaMiddleware.run(watchAuth);
