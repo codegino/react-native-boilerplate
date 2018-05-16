@@ -1,15 +1,11 @@
-import {AUTH_INITIATE_SIGNUP, AUTH_SIGNUP} from './actionTypes'
+import { AUTH_INITIATE_SIGNUP, AUTH_SIGNUP } from './actionTypes';
 
-export const authSignup = (authData) => {
-  return {
-    type: AUTH_INITIATE_SIGNUP,
-    authData: authData
-  }
-}
+export const authSignup = authData => ({
+  type: AUTH_INITIATE_SIGNUP,
+  authData,
+});
 
-export const authSignupSucceed = (authData) => {
-  return {
-    type: AUTH_SIGNUP,
-    authData: authData
-  }
-}
+export const authSignupSucceed = authData => ({
+  type: AUTH_SIGNUP,
+  authData,
+});

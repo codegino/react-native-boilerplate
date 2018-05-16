@@ -1,9 +1,8 @@
 import { Navigation } from 'react-native-navigation';
 
-import { Provider } from 'react-redux'
-import React from 'react'
+import { Provider } from 'react-redux';
 import AuthScreen from './src/screens/Auth/Auth';
-import configureStore from './src/store/configureStore'
+import configureStore from './src/store/configureStore';
 
 const store = configureStore();
 

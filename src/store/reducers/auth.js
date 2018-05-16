@@ -1,19 +1,19 @@
-import {AUTH_SIGNUP} from '../actions/actionTypes'
+import { AUTH_SIGNUP } from '../actions/actionTypes';
 
 const initialState = {
-  authData: ''
-}
+  authData: '',
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case AUTH_SIGNUP: 
+    case AUTH_SIGNUP:
       return {
         ...state,
-        authData: action.authData
-      }
+        authData: action.authData,
+      };
     default:
       return state;
   }
-}
+};
 
 export default reducer;
