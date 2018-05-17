@@ -13,10 +13,10 @@ export function* authSignupSaga(action) {
       returnSecureToken: true,
     }),
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(json => json)
     .catch(() => undefined);
 

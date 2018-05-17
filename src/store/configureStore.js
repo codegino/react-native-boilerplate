@@ -10,10 +10,10 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
-let composeEnhancers =  compose;
+let composeEnhancers = compose;
 
 if (__DEV__) {
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXENSION_COMPOSE__ || compose;
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
 const configureStore = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
