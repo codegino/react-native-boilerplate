@@ -9,8 +9,8 @@ type Props = {
 
 class LoginScreen extends React.Component<Props> {
   state = {
-    email: '',
-    password: '',
+    email: 'carloginocatapang@gmail.com',
+    password: 'Gngapatac1202',
   }
 
   onLoginHandler = () => {
@@ -40,7 +40,7 @@ class LoginScreen extends React.Component<Props> {
       <View>
         <Text>Login</Text>
         <TextInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
-        <TextInput placeholder="Password" value={this.state.password} onChangeText={this.onChangePasswordHandler} />
+        <TextInput placeholder="Password" secureTextEntry value={this.state.password} onChangeText={this.onChangePasswordHandler} />
         <Button title="Login" onPress={this.onLoginHandler} />
       </View>
     );

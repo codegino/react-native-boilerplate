@@ -59,8 +59,8 @@ class SignupScreen extends React.Component<Props> {
       <View>
         <Text>Signup</Text>
         <TextInput placeholder="Enter email address" value={this.state.email} onChangeText={this.onEmailChangeHandler} />
-        <TextInput placeholder="Enter password" value={this.state.password} onChangeText={this.onPasswordChangeHandler} />
-        <TextInput placeholder="Repeat password" value={this.state.confirmPassword} onChangeText={this.onConfirmPasswordChangeHandler} />
+        <TextInput placeholder="Enter password" secureTextEntry value={this.state.password} onChangeText={this.onPasswordChangeHandler} />
+        <TextInput placeholder="Repeat password" secureTextEntry value={this.state.confirmPassword} onChangeText={this.onConfirmPasswordChangeHandler} />
         <Button title="Sign up" onPress={this.onSignupHandler} />
       </View>
     );
