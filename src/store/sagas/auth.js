@@ -20,6 +20,12 @@ export function* authSignupSaga(action) {
     });
 
     yield put(authSignupSucceed(response));
+    yield Navigation.startSingleScreenApp({
+      screen:{
+        screen: 'awesome-places.AuthScreen',
+        title: 'Login'
+      }
+    });
   } catch (error) {
     // TODO
   }
