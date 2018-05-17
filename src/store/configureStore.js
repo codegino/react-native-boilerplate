@@ -1,5 +1,5 @@
 import createSagaMiddleware from 'redux-saga';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import { watchAuth } from './sagas/index';
 import authReducer from './reducers/auth';
@@ -10,7 +10,13 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
-const configureStore = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+let composeEnhancers =  compose;
+
+if (__DEV__) {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXENSION_COMPOSE__ || compose;
+}
+
+const configureStore = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 export default () => configureStore;
 

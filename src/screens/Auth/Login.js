@@ -30,7 +30,7 @@ class LoginScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  authData: state.auth.authData,
+  authData: state.auth.token,
 });
 
 export default connect(mapStateToProps)(LoginScreen);

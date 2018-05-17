@@ -1,7 +1,7 @@
 import { AUTH_SIGNUP } from '../actions/actionTypes';
 
 const initialState = {
-  authData: '',
+  token: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     case AUTH_SIGNUP:
       return {
         ...state,
-        authData: action.authData,
+        token: action.authData.idToken,
       };
     default:
       return state;

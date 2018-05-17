@@ -49,9 +49,9 @@ class SignupScreen extends React.Component {
   }
 
   defaultState = {
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: 'carlogino@yahoo.com',
+    password: 'carlogino',
+    confirmPassword: 'carlogino',
   }
 
   render() {
