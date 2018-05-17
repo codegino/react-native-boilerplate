@@ -4,10 +4,6 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { authSignup } from '../../../src/store/actions/index';
 
 class SignupScreen extends React.Component {
-  propTypes = {
-    onSignup: undefined,
-  }
-
   componentWillMount() {
     this.resetState();
   }
