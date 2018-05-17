@@ -1,40 +1,54 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { authLogin } from '../../store/actions';
 
 type Props = {
-  authData: String,
+  onLogin: Function,
 }
 
 class LoginScreen extends React.Component<Props> {
   state = {
-    username: '',
+    email: '',
+    password: '',
   }
 
   onLoginHandler = () => {
+    const authData = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.onLogin(authData);
   }
 
-  onChangeTextHandler = (event) => {
+  onChangeEmailHandler = (email) => {
     this.setState(prevState => ({
       ...prevState,
-      username: event,
+      email,
+    }));
+  };
+
+  onChangePasswordHandler = (password) => {
+    this.setState(prevState => ({
+      ...prevState,
+      password,
     }));
   };
 
   render() {
     return (
       <View>
-        <Text>Login {this.props.authData}</Text>
-        <TextInput placeholder="Username" value={this.state.username} onChangeText={this.onChangeTextHandler} />
-        <TextInput placeholder="Password" />
+        <Text>Login</Text>
+        <TextInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
+        <TextInput placeholder="Password" value={this.state.password} onChangeText={this.onChangePasswordHandler} />
         <Button title="Login" onPress={this.onLoginHandler} />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  authData: state.auth.token,
+const mapDispatchToProps = dispatch => ({
+  onLogin: authData => dispatch(authLogin(authData)),
 });
 
-export default connect(mapStateToProps)(LoginScreen);
+export default connect(null, mapDispatchToProps)(LoginScreen);

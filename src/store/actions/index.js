@@ -1,2 +1,2 @@
-export { authSignup } from './auth';
-export { authSignupSucceed } from './auth';
+export { authSignup, authSignupSucceed } from './auth';
+export { authLogin, authLoginSucceed } from './auth';

@@ -1,4 +1,4 @@
-import { AUTH_INITIATE_SIGNUP, AUTH_SIGNUP } from './actionTypes';
+import { AUTH_INITIATE_SIGNUP, AUTH_SIGNUP, AUTH_LOGIN, AUTH_INITIATE_LOGIN } from './actionTypes';
 
 export const authSignup = authData => ({
   type: AUTH_INITIATE_SIGNUP,
@@ -7,5 +7,15 @@ export const authSignup = authData => ({
 
 export const authSignupSucceed = authData => ({
   type: AUTH_SIGNUP,
+  authData,
+});
+
+export const authLogin = authData => ({
+  type: AUTH_INITIATE_LOGIN,
+  authData,
+});
+
+export const authLoginSucceed = authData => ({
+  type: AUTH_LOGIN,
   authData,
 });
