@@ -5,3 +5,7 @@ import { authSignupSaga } from './auth';
 export function* watchAuth() {
   yield takeEvery(actionTypes.AUTH_INITIATE_SIGNUP, authSignupSaga);
 }
+
+export function* watchLogin() {
+  // TODO
+}

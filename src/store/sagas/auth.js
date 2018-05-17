@@ -22,3 +22,7 @@ export function* authSignupSaga(action) {
 
   yield put(authSignupSucceed(response));
 }
+
+export function* authLoginSaga() {
+  // TODO
+}

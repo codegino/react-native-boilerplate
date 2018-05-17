@@ -4,6 +4,10 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { authSignup } from '../../../src/store/actions/index';
 
 class SignupScreen extends React.Component {
+  propTypes = {
+    onSignup: undefined,
+  }
+
   componentWillMount() {
     this.resetState();
   }
@@ -17,7 +21,7 @@ class SignupScreen extends React.Component {
 
       this.props.onSignup(authData);
     } else {
-      alert('Password did not match');
+      // TODO handle validation
     }
   }
 
@@ -44,14 +48,10 @@ class SignupScreen extends React.Component {
 
   resetState = () => {
     this.setState(() => ({
-      ...this.defaultState,
+      email: '',
+      password: '',
+      confirmPassword: '',
     }));
-  }
-
-  defaultState = {
-    email: 'carlogino@yahoo.com',
-    password: 'carlogino',
-    confirmPassword: 'carlogino',
   }
 
   render() {

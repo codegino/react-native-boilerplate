@@ -3,6 +3,10 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 class LoginScreen extends React.Component {
+  propTypes = {
+    authData: undefined,
+  }
+
   state = {
     username: '',
   }
