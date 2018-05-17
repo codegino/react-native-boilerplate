@@ -2,7 +2,11 @@ import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 
-class LoginScreen extends React.Component {
+type Props = {
+  authData: String,
+}
+
+class LoginScreen extends React.Component<Props> {
   state = {
     username: '',
   }

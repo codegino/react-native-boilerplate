@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { View, Text, TextInput, Button } from 'react-native';
 import { authSignup } from '../../../src/store/actions/index';
 
-class SignupScreen extends React.Component {
+type Props = {
+  onSignup: Function,
+}
+
+class SignupScreen extends React.Component<Props> {
   componentWillMount() {
     this.resetState();
   }
