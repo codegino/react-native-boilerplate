@@ -17,5 +17,6 @@ export const authLogin = authData => ({
 
 export const authLoginSucceed = authData => ({
   type: AUTH_LOGIN,
-  authData,
+  token: authData.token,
+  userId: authData.userId,
 });
