@@ -10,7 +10,7 @@ type Props = {
 class LoginScreen extends React.Component<Props> {
   state = {
     email: 'carloginocatapang@gmail.com',
-    password: 'Gngapatac1202',
+    password: 'Gnapatac1202',
   }
 
   onLoginHandler = () => {

@@ -1,6 +1,7 @@
 import { AUTH_SIGNUP, AUTH_LOGIN } from '../actions/actionTypes';
 
 const initialState = {
+  userId: null,
   token: null,
 };
 
@@ -9,12 +10,14 @@ const reducer = (state = initialState, action) => {
     case AUTH_SIGNUP:
       return {
         ...state,
-        token: action.authData.idToken,
+        token: action.token,
+        userId: action.userId,
       };
     case AUTH_LOGIN:
       return {
         ...state,
-        token: action.authData.idToken,
+        token: action.token,
+        userId: action.userId,
       };
     default:
       return state;

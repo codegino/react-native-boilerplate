@@ -18,9 +18,13 @@ export function* authSignupSaga(action) {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
+    })
+      .then(res => res.json());
 
-    yield put(authSignupSucceed(response));
+    yield put(authSignupSucceed({
+      token: response.idToken,
+      userId: response.localId,
+    }));
     yield Navigation.startSingleScreenApp({
       screen: {
         screen: 'awesome-places.AuthScreen',
@@ -46,9 +50,13 @@ export function* authLoginSaga(action) {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
+    })
+      .then(res => res.json());
 
-    yield put(authLoginSucceed(response));
+    yield put(authLoginSucceed({
+      token: response.idToken,
+      userId: response.localId,
+    }));
     yield startExpensesTabs();
   } catch (error) {
     // TODO
