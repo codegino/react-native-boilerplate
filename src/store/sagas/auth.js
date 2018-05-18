@@ -2,6 +2,7 @@ import { put } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
 
 import { authSignupSucceed, authLoginSucceed } from '../actions/auth';
+import startExpensesTabs from '../../screens/tracker/startExpensesTabs';
 
 export function* authSignupSaga(action) {
   try {
@@ -21,10 +22,10 @@ export function* authSignupSaga(action) {
 
     yield put(authSignupSucceed(response));
     yield Navigation.startSingleScreenApp({
-      screen:{
+      screen: {
         screen: 'awesome-places.AuthScreen',
-        title: 'Login'
-      }
+        title: 'Login',
+      },
     });
   } catch (error) {
     // TODO
@@ -48,12 +49,7 @@ export function* authLoginSaga(action) {
     });
 
     yield put(authLoginSucceed(response));
-    yield Navigation.startSingleScreenApp({
-      screen: {
-        screen: 'awesome-places.HomeScreen',
-        title: 'Home',
-      },
-    });
+    yield startExpensesTabs();
   } catch (error) {
     // TODO
   }
