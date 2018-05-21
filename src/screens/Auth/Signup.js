@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { KeyboardAvoidingView, Text } from 'react-native';
 import { authSignup } from '../../../src/store/actions/index';
 import styles from './signupStyle';
 import DefaultTextInput from '../../components/input/DefaultInput';
@@ -59,13 +59,13 @@ class SignupScreen extends React.Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.title}>Signup</Text>
         <DefaultTextInput placeholder="Enter email address" value={this.state.email} onChangeText={this.onEmailChangeHandler} />
         <DefaultTextInput placeholder="Enter password" secureTextEntry value={this.state.password} onChangeText={this.onPasswordChangeHandler} />
         <DefaultTextInput placeholder="Repeat password" secureTextEntry value={this.state.confirmPassword} onChangeText={this.onConfirmPasswordChangeHandler} />
         <DefaultButton title="Sign up" onPress={this.onSignupHandler} />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

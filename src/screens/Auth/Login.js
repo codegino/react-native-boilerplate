@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { authLogin } from '../../store/actions';
 import styles from './loginStyle';
@@ -40,12 +40,12 @@ class LoginScreen extends React.Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.title}>Login</Text>
         <DefaultInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
         <DefaultInput placeholder="Password" secureTextEntry value={this.state.password} onChangeText={this.onChangePasswordHandler} />
         <DefaultButton title="Login" onPress={this.onLoginHandler} />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
