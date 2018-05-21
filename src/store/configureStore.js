@@ -1,15 +1,17 @@
 import createSagaMiddleware from 'redux-saga';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { watchAuth } from './sagas/index';
+import { watchAuth, watchExpenses } from './sagas/index';
 import authReducer from './reducers/auth';
 import uiReducer from './reducers/ui';
+import expensesReducer from './reducers/expenses';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   auth: authReducer,
   ui: uiReducer,
+  expenses: expensesReducer,
 });
 
 let composeEnhancers = compose;
@@ -24,3 +26,4 @@ const configureStore = createStore(rootReducer, composeEnhancers(applyMiddleware
 export default () => configureStore;
 
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchExpenses);

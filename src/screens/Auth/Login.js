@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { authLogin } from '../../store/actions';
+import { authLogin } from '../../store/actions/auth';
 import styles from './loginStyle';
 import DefaultInput from '../../components/input/DefaultInput';
 import DefaultButton from '../../components/button/DefaultButton';

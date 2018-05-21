@@ -1,4 +1,4 @@
-import { AUTH_SIGNUP, AUTH_LOGIN } from '../actions/actionTypes';
+import { AUTH_SIGNUP, AUTH_LOGIN } from '../actions/auth';
 
 const initialState = {
   userId: null,

@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-// import firebase from '../../services/firebase';
+import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { fetchExpenses, addExpenses } from '../../store/actions/expenses';
 
 type Props = {
   navigator: Function,
+  fetchExpenses: Function,
+  addExpenses: Function,
+  expenses: Array,
+  isLoading: boolean,
 }
 
 class DailyViewScreen extends React.Component<Props> {
@@ -12,43 +18,8 @@ class DailyViewScreen extends React.Component<Props> {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
-  state = {
-    expenses: [{
-      id: '1',
-      value: 'Carlo',
-    },
-    {
-      id: '2',
-      value: 'Gino',
-    },
-    ],
-  }
-
   componentDidMount() {
-    // const fetchUserId = new Promise((resolve) => {
-    //   const userId = firebase.auth().currentUser.uid;
-    //   resolve(userId);
-    // });
-
-    // // SETTING TO FIREBASE
-    // fetchUserId
-    //   .then((userId) => {
-    //     firebase.database().ref(`users/${userId}`).set({
-    //       username: 'carlogino',
-    //       email: 'carlogino@yahoo.com',
-    //     });
-
-    //     return userId;
-    //   })
-    //   // GETTING FROM FIREBASE
-    //   .then((userId) => {
-    //     const usernameRef = firebase.database().ref(`/users/${userId}/username`);
-
-    //     usernameRef.on('value', (snapshot) => {
-    //       console.log('REPLY:', snapshot.val())
-    //     });
-    //   })
-    //   .catch(err => console.log(err))
+    this.props.fetchExpenses();
   }
 
   onNavigatorEvent = (event) => {
@@ -61,17 +32,42 @@ class DailyViewScreen extends React.Component<Props> {
     }
   };
 
+  onButtonPressHandler = () => {
+    const item = {
+      name: 'Test name',
+      price: 5.2,
+    };
+
+    this.props.addExpenses(item);
+  }
+
   render() {
-    const exp = this.state.expenses.map(item => (
-      <Text key={item.id}>{item.value}</Text>
+    const exp = this.props.expenses.map(item => (
+      <View key={item.name}>
+        <Text>Name: {item.name}</Text>
+        <Text>Price: {item.price}</Text>
+      </View>
     ));
+
     return (
       <View>
-        {exp}
         <Text>DailyViewScreen</Text>
+        <Button title="Add" onPress={this.onButtonPressHandler} />
+        {exp}
+        <Spinner visible={this.props.isLoading} textContent="Loading..." textStyle={{ color: '#FFF' }} />
       </View>
     );
   }
 }
 
-export default DailyViewScreen;
+const mapStateToProps = state => ({
+  expenses: state.expenses.expenses,
+  isLoading: state.ui.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchExpenses: () => dispatch(fetchExpenses()),
+  addExpenses: item => dispatch(addExpenses(item)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DailyViewScreen);
