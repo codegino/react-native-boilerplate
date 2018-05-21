@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { authSignup } from '../../../src/store/actions/index';
+import styles from './signupStyle';
+import DefaultTextInput from '../../components/input/DefaultInput';
+import DefaultButton from '../../components/button/DefaultButton';
 
 type Props = {
   onSignup: Function,
@@ -56,12 +59,12 @@ class SignupScreen extends React.Component<Props> {
 
   render() {
     return (
-      <View>
-        <Text>Signup</Text>
-        <TextInput placeholder="Enter email address" value={this.state.email} onChangeText={this.onEmailChangeHandler} />
-        <TextInput placeholder="Enter password" secureTextEntry value={this.state.password} onChangeText={this.onPasswordChangeHandler} />
-        <TextInput placeholder="Repeat password" secureTextEntry value={this.state.confirmPassword} onChangeText={this.onConfirmPasswordChangeHandler} />
-        <Button title="Sign up" onPress={this.onSignupHandler} />
+      <View style={styles.container}>
+        <Text style={styles.title}>Signup</Text>
+        <DefaultTextInput placeholder="Enter email address" value={this.state.email} onChangeText={this.onEmailChangeHandler} />
+        <DefaultTextInput placeholder="Enter password" secureTextEntry value={this.state.password} onChangeText={this.onPasswordChangeHandler} />
+        <DefaultTextInput placeholder="Repeat password" secureTextEntry value={this.state.confirmPassword} onChangeText={this.onConfirmPasswordChangeHandler} />
+        <DefaultButton title="Sign up" onPress={this.onSignupHandler} />
       </View>
     );
   }

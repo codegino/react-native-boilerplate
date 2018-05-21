@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { authLogin } from '../../store/actions';
+import styles from './loginStyle';
+import DefaultInput from '../../components/input/DefaultInput';
+import DefaultButton from '../../components/button/DefaultButton';
 
 type Props = {
   onLogin: Function,
-  isLoading: boolean,
 }
 
 class LoginScreen extends React.Component<Props> {
@@ -37,29 +39,19 @@ class LoginScreen extends React.Component<Props> {
   };
 
   render() {
-    let buttonToDisplay = <Button title="Login" onPress={this.onLoginHandler} />;
-
-    if (this.props.isLoading) {
-      buttonToDisplay = <ActivityIndicator />;
-    }
-
     return (
-      <View>
-        <Text>Login</Text>
-        <TextInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
-        <TextInput placeholder="Password" secureTextEntry value={this.state.password} onChangeText={this.onChangePasswordHandler} />
-        {buttonToDisplay}
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <DefaultInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
+        <DefaultInput placeholder="Password" secureTextEntry value={this.state.password} onChangeText={this.onChangePasswordHandler} />
+        <DefaultButton title="Login" onPress={this.onLoginHandler} />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.ui.loading,
-});
-
 const mapDispatchToProps = dispatch => ({
   onLogin: authData => dispatch(authLogin(authData)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(null, mapDispatchToProps)(LoginScreen);

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Button, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 import Login from './Login';
 import Signup from './Signup';
+import styles from './authStyle';
+import DefaultButton from '../../components/button/DefaultButton';
 
 type Props = {
   isLoading: boolean,
@@ -24,22 +28,20 @@ class AuthScreen extends Component<Props> {
 
   render() {
     let layout = <Login />;
-    let buttonToDisplay = (
-      <Button title={this.state.buttonTitle} onPress={this.onSwitchModeHandler} />
-    );
 
     if (this.state.mode === 'signup') {
       layout = <Signup />;
     }
 
-    if (this.props.isLoading === true) {
-      buttonToDisplay = <ActivityIndicator />;
-    }
-
     return (
-      <View>
-        {buttonToDisplay}
-        {layout}
+      <View style={styles.container}>
+        <View style={styles.content}>
+          {layout}
+        </View>
+        <View style={styles.footer}>
+          <DefaultButton title={this.state.buttonTitle} onPress={this.onSwitchModeHandler} />
+        </View>
+        <Spinner visible={this.props.isLoading} textContent="Loading..." textStyle={{ color: '#FFF' }} />
       </View>);
   }
 }
