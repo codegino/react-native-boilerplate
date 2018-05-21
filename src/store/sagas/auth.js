@@ -29,7 +29,7 @@ export function* authSignupSaga(action) {
 
     yield Navigation.startSingleScreenApp({
       screen: {
-        screen: 'awesome-places.AuthScreen',
+        screen: 'expenses.AuthScreen',
         title: 'Login',
       },
     });

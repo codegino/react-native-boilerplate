@@ -11,7 +11,7 @@ const startTabs = () => {
     Navigation.startTabBasedApp({
       tabs: [
         {
-          screen: 'awesome-places.DailyViewScreen',
+          screen: 'expenses.DailyViewScreen',
           label: 'Daily View',
           title: 'Daily View',
           icon: sources[1],
@@ -26,7 +26,7 @@ const startTabs = () => {
           },
         },
         {
-          screen: 'awesome-places.MonthlyViewScreen',
+          screen: 'expenses.MonthlyViewScreen',
           label: 'Monthly View',
           title: 'Monthly View',
           icon: sources[0],
@@ -41,6 +41,11 @@ const startTabs = () => {
           },
         },
       ],
+      drawer: {
+        left: {
+          screen: 'expenses.SideDrawer',
+        },
+      },
       tabsStyle: {
         tabBarSelectedButtonColor: 'orange',
       },
