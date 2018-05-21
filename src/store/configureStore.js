@@ -3,11 +3,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import { watchAuth } from './sagas/index';
 import authReducer from './reducers/auth';
+import uiReducer from './reducers/ui';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  ui: uiReducer,
 });
 
 let composeEnhancers = compose;

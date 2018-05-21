@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { authLogin } from '../../store/actions';
 
 type Props = {
   onLogin: Function,
+  isLoading: boolean,
 }
 
 class LoginScreen extends React.Component<Props> {
@@ -36,19 +37,29 @@ class LoginScreen extends React.Component<Props> {
   };
 
   render() {
+    let buttonToDisplay = <Button title="Login" onPress={this.onLoginHandler} />;
+
+    if (this.props.isLoading) {
+      buttonToDisplay = <ActivityIndicator />;
+    }
+
     return (
       <View>
         <Text>Login</Text>
         <TextInput placeholder="Email" value={this.state.email} onChangeText={this.onChangeEmailHandler} />
         <TextInput placeholder="Password" secureTextEntry value={this.state.password} onChangeText={this.onChangePasswordHandler} />
-        <Button title="Login" onPress={this.onLoginHandler} />
+        {buttonToDisplay}
       </View>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  isLoading: state.ui.loading,
+});
+
 const mapDispatchToProps = dispatch => ({
   onLogin: authData => dispatch(authLogin(authData)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

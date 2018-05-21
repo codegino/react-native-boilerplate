@@ -2,23 +2,19 @@ import { put } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
 
 import { authSignupSucceed, authLoginSucceed } from '../actions/auth';
+import { onLoadingEnd, onLoadingStart } from '../actions/ui';
 import startExpensesTabs from '../../screens/tracker/startExpensesTabs';
 import firebaseService from '../../services/firebase';
 
 export function* authSignupSaga(action) {
   try {
+    yield put(onLoadingStart());
     const { email, password } = action.authData;
 
     firebaseService.auth()
       .createUserAndRetrieveDataWithEmailAndPassword(email, password)
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        if (errorCode === 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
-        }
+      .catch(() => {
+        put(onLoadingEnd());
       });
 
     const currentUser = yield firebaseService.auth().currentUser;
@@ -33,13 +29,15 @@ export function* authSignupSaga(action) {
         title: 'Login',
       },
     });
+    yield put(onLoadingEnd());
   } catch (error) {
-    console.log(error);
+    yield put(onLoadingEnd());
   }
 }
 
 export function* authLoginSaga(action) {
   try {
+    yield put(onLoadingStart());
     yield firebaseService.auth()
       .signInWithEmailAndPassword(action.authData.email, action.authData.password);
 
@@ -49,7 +47,8 @@ export function* authLoginSaga(action) {
       userId: currentUser.uid,
     }));
     yield startExpensesTabs();
+    yield put(onLoadingEnd());
   } catch (error) {
-    console.log(error);
+    yield put(onLoadingEnd());
   }
 }

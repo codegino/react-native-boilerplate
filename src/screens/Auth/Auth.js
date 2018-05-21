@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Button, ActivityIndicator } from 'react-native';
 import Login from './Login';
 import Signup from './Signup';
 
-// eslint-disable-next-line
-class AuthScreen extends Component {
+type Props = {
+  isLoading: boolean,
+}
+
+class AuthScreen extends Component<Props> {
   state = {
     mode: 'login',
     buttonTitle: 'Switch to signup',
@@ -20,16 +24,28 @@ class AuthScreen extends Component {
 
   render() {
     let layout = <Login />;
+    let buttonToDisplay = (
+      <Button title={this.state.buttonTitle} onPress={this.onSwitchModeHandler} />
+    );
 
     if (this.state.mode === 'signup') {
       layout = <Signup />;
     }
+
+    if (this.props.isLoading === true) {
+      buttonToDisplay = <ActivityIndicator />;
+    }
+
     return (
       <View>
-        <Button title={this.state.buttonTitle} onPress={this.onSwitchModeHandler} />
+        {buttonToDisplay}
         {layout}
       </View>);
   }
 }
 
-export default AuthScreen;
+const mapStateToProps = state => ({
+  isLoading: state.ui.loading,
+});
+
+export default connect(mapStateToProps)(AuthScreen);
