@@ -43,7 +43,7 @@ class DailyViewScreen extends React.Component<Props> {
 
   render() {
     const exp = this.props.expenses.map(item => (
-      <View key={item.name}>
+      <View key={item.id}>
         <Text>Name: {item.name}</Text>
         <Text>Price: {item.price}</Text>
       </View>

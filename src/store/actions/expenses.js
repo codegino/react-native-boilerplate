@@ -14,9 +14,9 @@ export const fetchExpenses = () => ({
   type: FETCH_EXPENSES_START,
 });
 
-export const fetchExpensesSuccess = (item: ExpenseItem) => ({
+export const fetchExpensesSuccess = (expenses: Array) => ({
   type: FETCH_EXPENSES_SUCCESS,
-  item,
+  expenses,
 });
 
 export const fetchExpensesFail = () => ({

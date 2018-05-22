@@ -9,9 +9,14 @@ export function* fetchExpensesSaga() {
   try {
     const userId = yield firebase.auth().currentUser.uid;
 
-    const expenses = yield firebase.database()
-      .ref(`/users/${userId}/item`)
+    const expensesRefVal = yield firebase.database()
+      .ref(`/users/${userId}/items`)
       .once('value').then(snapshot => snapshot.val());
+
+    const expenses = Object.keys(expensesRefVal).map(id => ({
+      ...expensesRefVal[id],
+      id,
+    }));
 
     yield put(fetchExpensesSuccess(expenses));
   } catch (error) {
@@ -22,18 +27,17 @@ export function* fetchExpensesSaga() {
 
 export function* addExpensesSaga(action) {
   yield put(onLoadingStart());
-  const fetchUserId = new Promise((resolve) => {
-    const userId = firebase.auth().currentUser.uid;
-    resolve(userId);
+  const userId = yield firebase.auth().currentUser.uid;
+
+  const addItemRef = firebase.database().ref(`users/${userId}/items`).push({
+    ...action.item,
   });
 
-  fetchUserId
-    .then((userId) => {
-      firebase.database().ref(`users/${userId}`).set({
-        item: action.item,
-      });
-    });
+  const item = {
+    id: addItemRef.key,
+    ...addItemRef,
+  };
 
-  yield put(addExpensesSuccess(action.item));
+  yield put(addExpensesSuccess(item));
   yield put(onLoadingEnd());
 }
