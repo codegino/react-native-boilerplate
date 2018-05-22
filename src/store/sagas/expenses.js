@@ -35,7 +35,7 @@ export function* addExpensesSaga(action) {
 
   const item = {
     id: addItemRef.key,
-    ...addItemRef,
+    ...action.item,
   };
 
   yield put(addExpensesSuccess(item));

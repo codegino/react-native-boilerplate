@@ -3,6 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { fetchExpenses, addExpenses } from '../../store/actions/expenses';
+import styles from './dailyViewScreenStyle';
 
 type Props = {
   navigator: Function,
@@ -50,10 +51,12 @@ class DailyViewScreen extends React.Component<Props> {
     ));
 
     return (
-      <View>
-        <Text>DailyViewScreen</Text>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text>DailyViewScreen</Text>
+          {exp}
+        </View>
         <Button title="Add" onPress={this.onButtonPressHandler} />
-        {exp}
         <Spinner visible={this.props.isLoading} textContent="Loading..." textStyle={{ color: '#FFF' }} />
       </View>
     );
