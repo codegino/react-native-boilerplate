@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableNativeFeedback } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-loading-spinner-overlay';
+
 import { fetchExpenses, addExpenses } from '../../store/actions/expenses';
 import styles from './dailyViewScreenStyle';
 
@@ -56,7 +58,16 @@ class DailyViewScreen extends React.Component<Props> {
           <Text>DailyViewScreen</Text>
           {exp}
         </View>
-        <Button title="Add" onPress={this.onButtonPressHandler} />
+
+        <View style={styles.floatingButton}>
+          <TouchableNativeFeedback onPress={this.onButtonPressHandler}>
+            <Icon
+              name="plus-circle"
+              size={50}
+              color="yellowgreen"
+            />
+          </TouchableNativeFeedback>
+        </View>
         <Spinner visible={this.props.isLoading} textContent="Loading..." textStyle={{ color: '#FFF' }} />
       </View>
     );

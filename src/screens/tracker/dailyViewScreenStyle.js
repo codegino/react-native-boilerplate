@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
 });
 
 export default styles;
