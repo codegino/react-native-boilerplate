@@ -36,12 +36,17 @@ class DailyViewScreen extends React.Component<Props> {
   };
 
   onButtonPressHandler = () => {
-    const item = {
-      name: 'Test name',
-      price: 5.2,
-    };
+    // const item = {
+    //   name: 'Test name',
+    //   price: 5.2,
+    // };
 
-    this.props.addExpenses(item);
+    // this.props.addExpenses(item);
+    this.props.navigator.showModal({
+      screen: "expenses.AddNewItemModal", // unique ID registered with Navigation.registerScreen
+      title: "Add new item", // title of the screen as appears in the nav bar (optional)
+      animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
+    });
   }
 
   render() {
@@ -49,6 +54,7 @@ class DailyViewScreen extends React.Component<Props> {
       <View key={item.id}>
         <Text>Name: {item.name}</Text>
         <Text>Price: {item.price}</Text>
+        <Text>Date: {item.date}</Text>
       </View>
     ));
 
