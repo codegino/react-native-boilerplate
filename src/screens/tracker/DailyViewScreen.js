@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableNativeFeedback } from 'react-native';
+import { View, TouchableNativeFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import { fetchExpenses, addExpenses } from '../../store/actions/expenses';
+import { fetchExpenses } from '../../store/actions/expenses';
+import ItemDisplay from '../../components/item/ItemDisplay';
 import styles from './dailyViewScreenStyle';
 
 type Props = {
   navigator: Function,
   fetchExpenses: Function,
-  addExpenses: Function,
   expenses: Array,
   isLoading: boolean,
 }
@@ -36,32 +36,21 @@ class DailyViewScreen extends React.Component<Props> {
   };
 
   onButtonPressHandler = () => {
-    // const item = {
-    //   name: 'Test name',
-    //   price: 5.2,
-    // };
-
-    // this.props.addExpenses(item);
     this.props.navigator.showModal({
-      screen: "expenses.AddNewItemModal", // unique ID registered with Navigation.registerScreen
-      title: "Add new item", // title of the screen as appears in the nav bar (optional)
-      animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
+      screen: 'expenses.AddNewItemModal',
+      title: 'Add new item',
+      animationType: 'slide-up',
     });
   }
 
   render() {
     const exp = this.props.expenses.map(item => (
-      <View key={item.id}>
-        <Text>Name: {item.name}</Text>
-        <Text>Price: {item.price}</Text>
-        <Text>Date: {item.date}</Text>
-      </View>
+      <ItemDisplay key={item.id} item={item} />
     ));
 
     return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text>DailyViewScreen</Text>
           {exp}
         </View>
 
@@ -87,7 +76,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchExpenses: () => dispatch(fetchExpenses()),
-  addExpenses: item => dispatch(addExpenses(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DailyViewScreen);

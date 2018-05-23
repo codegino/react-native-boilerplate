@@ -8,6 +8,7 @@ export const ADD_EXPENSES_FAIL = 'ADD_EXPENSES_FAIL';
 type ExpenseItem = {
   name: string,
   price: number,
+  date: string,
 };
 
 export const fetchExpenses = () => ({
