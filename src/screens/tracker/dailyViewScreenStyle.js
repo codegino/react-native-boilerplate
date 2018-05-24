@@ -4,9 +4,9 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flex: 1,
+    paddingVertical: 10,
   },
   content: {
-    flex: 1,
   },
   floatingButton: {
     position: 'absolute',

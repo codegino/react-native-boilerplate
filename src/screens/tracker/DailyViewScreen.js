@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, TouchableNativeFeedback } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import { fetchExpenses } from '../../store/actions/expenses';
 import ItemDisplay from '../../components/item/ItemDisplay';
+import RoundAddButton from '../../components/button/RoundAddButton';
 import styles from './dailyViewScreenStyle';
 
 type Props = {
@@ -50,18 +50,12 @@ class DailyViewScreen extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        <View style={styles.content}>
+        <ScrollView contentContainerStyle={styles.content}>
           {exp}
-        </View>
+        </ScrollView>
 
         <View style={styles.floatingButton}>
-          <TouchableNativeFeedback onPress={this.onButtonPressHandler}>
-            <Icon
-              name="plus-circle"
-              size={50}
-              color="yellowgreen"
-            />
-          </TouchableNativeFeedback>
+          <RoundAddButton onPress={this.onButtonPressHandler} size={50} />
         </View>
         <Spinner visible={this.props.isLoading} textContent="Loading..." textStyle={{ color: '#FFF' }} />
       </View>
