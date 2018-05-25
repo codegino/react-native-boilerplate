@@ -1,4 +1,5 @@
 import { put } from 'redux-saga/effects';
+import { Navigation } from 'react-native-navigation';
 
 import { onLoadingEnd, onLoadingStart } from '../actions/ui';
 import { fetchExpensesSuccess, addExpensesSuccess, fetchExpensesFail } from '../actions/expenses';
@@ -39,5 +40,9 @@ export function* addExpensesSaga(action) {
   };
 
   yield put(addExpensesSuccess(item));
+  yield Navigation.dismissModal({
+    animationType: 'slide-down',
+  });
+
   yield put(onLoadingEnd());
 }
