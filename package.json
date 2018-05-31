@@ -22,7 +22,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
-    "lint": "esw src App.js --watch"
+    "lint": "esw src App.js --watch",
+    "ci": "esw src App.js"
   },
   "jest": {
     "preset": "react-native"
