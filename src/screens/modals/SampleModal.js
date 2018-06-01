@@ -16,11 +16,10 @@ const styles = StyleSheet.create({
   },
 });
 
-class AddNewItemModal extends React.Component<Props> {
+class AddNewItemModal extends React.Component {
   state = {
     content: 'Modal Content',
   }
-
 
   render() {
     return (

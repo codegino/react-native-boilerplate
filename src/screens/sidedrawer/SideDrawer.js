@@ -12,7 +12,7 @@ import styles from './sideDrawerStyle';
 const sideDrawer = () => {
   const showAddNewitemModal = () => {
     Navigation.showModal({
-      screen: 'expenses.AddNewItemModal',
+      screen: 'expenses.SampleModal',
       title: 'Add New Item',
       animationType: 'slide-up',
     });

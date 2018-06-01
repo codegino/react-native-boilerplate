@@ -3,7 +3,6 @@ import { Navigation } from 'react-native-navigation';
 
 import { authSignupSucceed, authLoginSucceed } from '../actions/auth';
 import { onLoadingEnd, onLoadingStart } from '../actions/ui';
-import startExpensesTabs from '../../screens/tracker/startExpensesTabs';
 import firebaseService from '../../services/firebase';
 
 export function* authSignupSaga(action) {
@@ -11,8 +10,7 @@ export function* authSignupSaga(action) {
     yield put(onLoadingStart());
     const { email, password } = action.authData;
 
-    firebaseService.auth()
-      .createUserAndRetrieveDataWithEmailAndPassword(email, password)
+    firebaseService.auth().createUserWithEmailAndPassword(email, password)
       .catch(() => {
         put(onLoadingEnd());
       });
@@ -46,7 +44,12 @@ export function* authLoginSaga(action) {
       token: currentUser.qa,
       userId: currentUser.uid,
     }));
-    yield startExpensesTabs();
+    yield Navigation.startSingleScreenApp({
+      screen: {
+        screen: 'expenses.HomeScreen',
+        title: 'Login',
+      },
+    });
     yield put(onLoadingEnd());
   } catch (error) {
     yield put(onLoadingEnd());

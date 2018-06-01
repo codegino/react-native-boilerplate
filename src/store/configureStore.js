@@ -1,7 +1,7 @@
 import createSagaMiddleware from 'redux-saga';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { watchAuth} from './sagas/index';
+import { watchAuth } from './sagas/index';
 import authReducer from './reducers/auth';
 import uiReducer from './reducers/ui';
 
