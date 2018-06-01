@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_EXPENSES_SUCCESS:
       return {
         ...state,
-        expenses: action.expenses,
+        expenses: action.expenses, 
       };
     case ADD_EXPENSES_SUCCESS:
       return {
