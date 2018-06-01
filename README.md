@@ -1,7 +1,5 @@
 # React-native boiler plate
 
-[![CircleCI](https://circleci.com/gh/gihooh/react-native-boilerplate.svg?style=svg)](https://circleci.com/gh/gihooh/react-native-boilerplate)
-
 ## Installation + Running
 1. cd expenses
 2. rename project in package.json
