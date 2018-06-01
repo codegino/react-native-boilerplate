@@ -17,8 +17,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # android
-android/build/*
-android/app/build/*
-android/.idea/*
-android/.gradle/*
+android/
+ios/
 .vscode/settings.json
